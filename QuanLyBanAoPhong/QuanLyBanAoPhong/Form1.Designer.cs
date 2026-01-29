@@ -31,13 +31,15 @@
             tabMain = new TabControl();
             tabSanPham = new TabPage();
             txtTimKiem = new TextBox();
-            grpXoaSP = new GroupBox();
+            grpCTSP = new GroupBox();
+            btnThemSP2 = new Button();
             btnhuyXoa = new Button();
-            Xoa = new Button();
             numericUpDown5 = new NumericUpDown();
             numericUpDown6 = new NumericUpDown();
             comboBox7 = new ComboBox();
             comboBox8 = new ComboBox();
+            btnSua = new Button();
+            btnXoa = new Button();
             comboBox9 = new ComboBox();
             textBox3 = new TextBox();
             textBox4 = new TextBox();
@@ -49,30 +51,15 @@
             label19 = new Label();
             label20 = new Label();
             grpThemSP = new GroupBox();
-            btnHuyThem = new Button();
-            btnLuu = new Button();
-            numericUpDown2 = new NumericUpDown();
-            numericUpDown1 = new NumericUpDown();
-            comboBox3 = new ComboBox();
-            comboBox2 = new ComboBox();
-            comboBox1 = new ComboBox();
-            textBox1 = new TextBox();
-            label6 = new Label();
-            label5 = new Label();
-            label4 = new Label();
-            label3 = new Label();
-            label2 = new Label();
-            label1 = new Label();
-            grpSuaSP = new GroupBox();
+            btnThemSP1 = new Button();
             btnHuySua = new Button();
-            btnLuuSua = new Button();
             numericUpDown3 = new NumericUpDown();
             numericUpDown4 = new NumericUpDown();
-            comboBox4 = new ComboBox();
+            cboKichThuocThem = new ComboBox();
             comboBox5 = new ComboBox();
-            comboBox6 = new ComboBox();
+            cboHangThem = new ComboBox();
             txtMaSP = new TextBox();
-            textBox2 = new TextBox();
+            txtTenSPThem = new TextBox();
             label7 = new Label();
             label8 = new Label();
             label9 = new Label();
@@ -82,9 +69,7 @@
             label12 = new Label();
             btnTimKiem = new Button();
             Save = new Button();
-            btnXoa = new Button();
-            btnSua = new Button();
-            btnThem = new Button();
+            btnThemSPTong = new Button();
             dgvSanPham = new DataGridView();
             tabKhachHang = new TabPage();
             txtTimKH = new TextBox();
@@ -140,13 +125,10 @@
             tabNhanVien = new TabPage();
             tabMain.SuspendLayout();
             tabSanPham.SuspendLayout();
-            grpXoaSP.SuspendLayout();
+            grpCTSP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown6).BeginInit();
             grpThemSP.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
-            grpSuaSP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvSanPham).BeginInit();
@@ -173,14 +155,11 @@
             // tabSanPham
             // 
             tabSanPham.Controls.Add(txtTimKiem);
-            tabSanPham.Controls.Add(grpXoaSP);
+            tabSanPham.Controls.Add(grpCTSP);
             tabSanPham.Controls.Add(grpThemSP);
-            tabSanPham.Controls.Add(grpSuaSP);
             tabSanPham.Controls.Add(btnTimKiem);
             tabSanPham.Controls.Add(Save);
-            tabSanPham.Controls.Add(btnXoa);
-            tabSanPham.Controls.Add(btnSua);
-            tabSanPham.Controls.Add(btnThem);
+            tabSanPham.Controls.Add(btnThemSPTong);
             tabSanPham.Controls.Add(dgvSanPham);
             tabSanPham.Location = new Point(4, 29);
             tabSanPham.Name = "tabSanPham";
@@ -198,51 +177,54 @@
             txtTimKiem.Size = new Size(256, 27);
             txtTimKiem.TabIndex = 5;
             // 
-            // grpXoaSP
+            // grpCTSP
             // 
-            grpXoaSP.Controls.Add(btnhuyXoa);
-            grpXoaSP.Controls.Add(Xoa);
-            grpXoaSP.Controls.Add(numericUpDown5);
-            grpXoaSP.Controls.Add(numericUpDown6);
-            grpXoaSP.Controls.Add(comboBox7);
-            grpXoaSP.Controls.Add(comboBox8);
-            grpXoaSP.Controls.Add(comboBox9);
-            grpXoaSP.Controls.Add(textBox3);
-            grpXoaSP.Controls.Add(textBox4);
-            grpXoaSP.Controls.Add(label14);
-            grpXoaSP.Controls.Add(label15);
-            grpXoaSP.Controls.Add(label16);
-            grpXoaSP.Controls.Add(label17);
-            grpXoaSP.Controls.Add(label18);
-            grpXoaSP.Controls.Add(label19);
-            grpXoaSP.Controls.Add(label20);
-            grpXoaSP.Location = new Point(283, 6);
-            grpXoaSP.Name = "grpXoaSP";
-            grpXoaSP.Size = new Size(371, 394);
-            grpXoaSP.TabIndex = 4;
-            grpXoaSP.TabStop = false;
-            grpXoaSP.Text = "Thông tin sản phẩm";
+            grpCTSP.BackColor = Color.LightCoral;
+            grpCTSP.Controls.Add(btnThemSP2);
+            grpCTSP.Controls.Add(btnhuyXoa);
+            grpCTSP.Controls.Add(numericUpDown5);
+            grpCTSP.Controls.Add(numericUpDown6);
+            grpCTSP.Controls.Add(comboBox7);
+            grpCTSP.Controls.Add(comboBox8);
+            grpCTSP.Controls.Add(btnSua);
+            grpCTSP.Controls.Add(btnXoa);
+            grpCTSP.Controls.Add(comboBox9);
+            grpCTSP.Controls.Add(textBox3);
+            grpCTSP.Controls.Add(textBox4);
+            grpCTSP.Controls.Add(label14);
+            grpCTSP.Controls.Add(label15);
+            grpCTSP.Controls.Add(label16);
+            grpCTSP.Controls.Add(label17);
+            grpCTSP.Controls.Add(label18);
+            grpCTSP.Controls.Add(label19);
+            grpCTSP.Controls.Add(label20);
+            grpCTSP.Location = new Point(463, 6);
+            grpCTSP.Name = "grpCTSP";
+            grpCTSP.Size = new Size(510, 394);
+            grpCTSP.TabIndex = 4;
+            grpCTSP.TabStop = false;
+            grpCTSP.Text = "Thông tin sản phẩm";
+            // 
+            // btnThemSP2
+            // 
+            btnThemSP2.BackColor = Color.IndianRed;
+            btnThemSP2.Location = new Point(12, 348);
+            btnThemSP2.Name = "btnThemSP2";
+            btnThemSP2.Size = new Size(107, 40);
+            btnThemSP2.TabIndex = 8;
+            btnThemSP2.Text = "Thêm ";
+            btnThemSP2.UseVisualStyleBackColor = false;
             // 
             // btnhuyXoa
             // 
             btnhuyXoa.BackColor = Color.IndianRed;
-            btnhuyXoa.Location = new Point(195, 348);
+            btnhuyXoa.Location = new Point(385, 348);
             btnhuyXoa.Name = "btnhuyXoa";
             btnhuyXoa.Size = new Size(107, 40);
             btnhuyXoa.TabIndex = 7;
             btnhuyXoa.Text = "Hủy";
             btnhuyXoa.UseVisualStyleBackColor = false;
             btnhuyXoa.Click += btnhuyXoa_Click;
-            // 
-            // Xoa
-            // 
-            Xoa.BackColor = Color.IndianRed;
-            Xoa.Location = new Point(56, 348);
-            Xoa.Name = "Xoa";
-            Xoa.Size = new Size(107, 40);
-            Xoa.TabIndex = 5;
-            Xoa.Text = "Xóa";
-            Xoa.UseVisualStyleBackColor = false;
             // 
             // numericUpDown5
             // 
@@ -263,7 +245,7 @@
             comboBox7.FormattingEnabled = true;
             comboBox7.Location = new Point(158, 207);
             comboBox7.Name = "comboBox7";
-            comboBox7.Size = new Size(184, 28);
+            comboBox7.Size = new Size(302, 28);
             comboBox7.TabIndex = 2;
             // 
             // comboBox8
@@ -271,15 +253,37 @@
             comboBox8.FormattingEnabled = true;
             comboBox8.Location = new Point(158, 160);
             comboBox8.Name = "comboBox8";
-            comboBox8.Size = new Size(184, 28);
+            comboBox8.Size = new Size(302, 28);
             comboBox8.TabIndex = 2;
+            // 
+            // btnSua
+            // 
+            btnSua.BackColor = Color.IndianRed;
+            btnSua.Location = new Point(134, 348);
+            btnSua.Name = "btnSua";
+            btnSua.Size = new Size(107, 40);
+            btnSua.TabIndex = 1;
+            btnSua.Text = "Sửa";
+            btnSua.UseVisualStyleBackColor = false;
+            btnSua.Click += btnSua_Click;
+            // 
+            // btnXoa
+            // 
+            btnXoa.BackColor = Color.IndianRed;
+            btnXoa.Location = new Point(261, 348);
+            btnXoa.Name = "btnXoa";
+            btnXoa.Size = new Size(107, 40);
+            btnXoa.TabIndex = 1;
+            btnXoa.Text = "Xóa";
+            btnXoa.UseVisualStyleBackColor = false;
+            btnXoa.Click += btnXoa_Click;
             // 
             // comboBox9
             // 
             comboBox9.FormattingEnabled = true;
             comboBox9.Location = new Point(158, 117);
             comboBox9.Name = "comboBox9";
-            comboBox9.Size = new Size(184, 28);
+            comboBox9.Size = new Size(302, 28);
             comboBox9.TabIndex = 2;
             // 
             // textBox3
@@ -288,7 +292,7 @@
             textBox3.Location = new Point(159, 32);
             textBox3.Name = "textBox3";
             textBox3.ReadOnly = true;
-            textBox3.Size = new Size(184, 27);
+            textBox3.Size = new Size(301, 27);
             textBox3.TabIndex = 1;
             // 
             // textBox4
@@ -296,7 +300,7 @@
             textBox4.BorderStyle = BorderStyle.FixedSingle;
             textBox4.Location = new Point(158, 71);
             textBox4.Name = "textBox4";
-            textBox4.Size = new Size(184, 27);
+            textBox4.Size = new Size(302, 27);
             textBox4.TabIndex = 1;
             // 
             // label14
@@ -364,173 +368,40 @@
             // 
             // grpThemSP
             // 
-            grpThemSP.Controls.Add(btnHuyThem);
-            grpThemSP.Controls.Add(btnLuu);
-            grpThemSP.Controls.Add(numericUpDown2);
-            grpThemSP.Controls.Add(numericUpDown1);
-            grpThemSP.Controls.Add(comboBox3);
-            grpThemSP.Controls.Add(comboBox2);
-            grpThemSP.Controls.Add(comboBox1);
-            grpThemSP.Controls.Add(textBox1);
-            grpThemSP.Controls.Add(label6);
-            grpThemSP.Controls.Add(label5);
-            grpThemSP.Controls.Add(label4);
-            grpThemSP.Controls.Add(label3);
-            grpThemSP.Controls.Add(label2);
-            grpThemSP.Controls.Add(label1);
-            grpThemSP.Location = new Point(266, 19);
+            grpThemSP.BackColor = Color.RosyBrown;
+            grpThemSP.Controls.Add(btnThemSP1);
+            grpThemSP.Controls.Add(btnHuySua);
+            grpThemSP.Controls.Add(numericUpDown3);
+            grpThemSP.Controls.Add(numericUpDown4);
+            grpThemSP.Controls.Add(cboKichThuocThem);
+            grpThemSP.Controls.Add(comboBox5);
+            grpThemSP.Controls.Add(cboHangThem);
+            grpThemSP.Controls.Add(txtMaSP);
+            grpThemSP.Controls.Add(txtTenSPThem);
+            grpThemSP.Controls.Add(label7);
+            grpThemSP.Controls.Add(label8);
+            grpThemSP.Controls.Add(label9);
+            grpThemSP.Controls.Add(label10);
+            grpThemSP.Controls.Add(label11);
+            grpThemSP.Controls.Add(label13);
+            grpThemSP.Controls.Add(label12);
+            grpThemSP.Location = new Point(71, 6);
             grpThemSP.Name = "grpThemSP";
-            grpThemSP.Size = new Size(365, 378);
-            grpThemSP.TabIndex = 2;
+            grpThemSP.Size = new Size(371, 394);
+            grpThemSP.TabIndex = 3;
             grpThemSP.TabStop = false;
             grpThemSP.Text = "Thông tin sản phẩm";
             // 
-            // btnHuyThem
+            // btnThemSP1
             // 
-            btnHuyThem.BackColor = Color.IndianRed;
-            btnHuyThem.Location = new Point(195, 322);
-            btnHuyThem.Name = "btnHuyThem";
-            btnHuyThem.Size = new Size(107, 40);
-            btnHuyThem.TabIndex = 6;
-            btnHuyThem.Text = "Hủy";
-            btnHuyThem.UseVisualStyleBackColor = false;
-            btnHuyThem.Click += btnHuyThem_Click;
-            // 
-            // btnLuu
-            // 
-            btnLuu.BackColor = Color.IndianRed;
-            btnLuu.Location = new Point(63, 322);
-            btnLuu.Name = "btnLuu";
-            btnLuu.Size = new Size(107, 40);
-            btnLuu.TabIndex = 5;
-            btnLuu.Text = "Thêm ";
-            btnLuu.UseVisualStyleBackColor = false;
-            btnLuu.Click += btnLuu_Click;
-            // 
-            // numericUpDown2
-            // 
-            numericUpDown2.Location = new Point(158, 274);
-            numericUpDown2.Name = "numericUpDown2";
-            numericUpDown2.Size = new Size(184, 27);
-            numericUpDown2.TabIndex = 4;
-            // 
-            // numericUpDown1
-            // 
-            numericUpDown1.Location = new Point(158, 224);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(184, 27);
-            numericUpDown1.TabIndex = 3;
-            // 
-            // comboBox3
-            // 
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(158, 171);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(184, 28);
-            comboBox3.TabIndex = 2;
-            // 
-            // comboBox2
-            // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(158, 124);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(184, 28);
-            comboBox2.TabIndex = 2;
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(158, 81);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(184, 28);
-            comboBox1.TabIndex = 2;
-            // 
-            // textBox1
-            // 
-            textBox1.BorderStyle = BorderStyle.FixedSingle;
-            textBox1.Location = new Point(158, 35);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(184, 27);
-            textBox1.TabIndex = 1;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(6, 281);
-            label6.Name = "label6";
-            label6.Size = new Size(72, 20);
-            label6.TabIndex = 0;
-            label6.Text = "Số lượng:";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(6, 231);
-            label5.Name = "label5";
-            label5.Size = new Size(65, 20);
-            label5.TabIndex = 0;
-            label5.Text = "Đơn giá:";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(6, 179);
-            label4.Name = "label4";
-            label4.Size = new Size(82, 20);
-            label4.TabIndex = 0;
-            label4.Text = "Kích thước:";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(6, 132);
-            label3.Name = "label3";
-            label3.Size = new Size(70, 20);
-            label3.TabIndex = 0;
-            label3.Text = "Màu sắc: ";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(6, 89);
-            label2.Name = "label2";
-            label2.Size = new Size(106, 20);
-            label2.TabIndex = 0;
-            label2.Text = "Hãng sản xuất:";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(6, 42);
-            label1.Name = "label1";
-            label1.Size = new Size(107, 20);
-            label1.TabIndex = 0;
-            label1.Text = " Tên sản phẩm:";
-            // 
-            // grpSuaSP
-            // 
-            grpSuaSP.Controls.Add(btnHuySua);
-            grpSuaSP.Controls.Add(btnLuuSua);
-            grpSuaSP.Controls.Add(numericUpDown3);
-            grpSuaSP.Controls.Add(numericUpDown4);
-            grpSuaSP.Controls.Add(comboBox4);
-            grpSuaSP.Controls.Add(comboBox5);
-            grpSuaSP.Controls.Add(comboBox6);
-            grpSuaSP.Controls.Add(txtMaSP);
-            grpSuaSP.Controls.Add(textBox2);
-            grpSuaSP.Controls.Add(label7);
-            grpSuaSP.Controls.Add(label8);
-            grpSuaSP.Controls.Add(label9);
-            grpSuaSP.Controls.Add(label10);
-            grpSuaSP.Controls.Add(label11);
-            grpSuaSP.Controls.Add(label13);
-            grpSuaSP.Controls.Add(label12);
-            grpSuaSP.Location = new Point(254, 35);
-            grpSuaSP.Name = "grpSuaSP";
-            grpSuaSP.Size = new Size(371, 394);
-            grpSuaSP.TabIndex = 3;
-            grpSuaSP.TabStop = false;
-            grpSuaSP.Text = "Thông tin sản phẩm";
+            btnThemSP1.BackColor = Color.IndianRed;
+            btnThemSP1.Location = new Point(57, 348);
+            btnThemSP1.Name = "btnThemSP1";
+            btnThemSP1.Size = new Size(107, 40);
+            btnThemSP1.TabIndex = 8;
+            btnThemSP1.Text = "Thêm ";
+            btnThemSP1.UseVisualStyleBackColor = false;
+            btnThemSP1.Click += btnThemSP1_Click;
             // 
             // btnHuySua
             // 
@@ -542,16 +413,6 @@
             btnHuySua.Text = "Hủy";
             btnHuySua.UseVisualStyleBackColor = false;
             btnHuySua.Click += btnHuySua_Click;
-            // 
-            // btnLuuSua
-            // 
-            btnLuuSua.BackColor = Color.IndianRed;
-            btnLuuSua.Location = new Point(63, 348);
-            btnLuuSua.Name = "btnLuuSua";
-            btnLuuSua.Size = new Size(107, 40);
-            btnLuuSua.TabIndex = 5;
-            btnLuuSua.Text = "Lưu";
-            btnLuuSua.UseVisualStyleBackColor = false;
             // 
             // numericUpDown3
             // 
@@ -567,13 +428,13 @@
             numericUpDown4.Size = new Size(184, 27);
             numericUpDown4.TabIndex = 3;
             // 
-            // comboBox4
+            // cboKichThuocThem
             // 
-            comboBox4.FormattingEnabled = true;
-            comboBox4.Location = new Point(158, 207);
-            comboBox4.Name = "comboBox4";
-            comboBox4.Size = new Size(184, 28);
-            comboBox4.TabIndex = 2;
+            cboKichThuocThem.FormattingEnabled = true;
+            cboKichThuocThem.Location = new Point(158, 207);
+            cboKichThuocThem.Name = "cboKichThuocThem";
+            cboKichThuocThem.Size = new Size(184, 28);
+            cboKichThuocThem.TabIndex = 2;
             // 
             // comboBox5
             // 
@@ -583,13 +444,13 @@
             comboBox5.Size = new Size(184, 28);
             comboBox5.TabIndex = 2;
             // 
-            // comboBox6
+            // cboHangThem
             // 
-            comboBox6.FormattingEnabled = true;
-            comboBox6.Location = new Point(158, 117);
-            comboBox6.Name = "comboBox6";
-            comboBox6.Size = new Size(184, 28);
-            comboBox6.TabIndex = 2;
+            cboHangThem.FormattingEnabled = true;
+            cboHangThem.Location = new Point(158, 117);
+            cboHangThem.Name = "cboHangThem";
+            cboHangThem.Size = new Size(184, 28);
+            cboHangThem.TabIndex = 2;
             // 
             // txtMaSP
             // 
@@ -600,13 +461,13 @@
             txtMaSP.Size = new Size(184, 27);
             txtMaSP.TabIndex = 1;
             // 
-            // textBox2
+            // txtTenSPThem
             // 
-            textBox2.BorderStyle = BorderStyle.FixedSingle;
-            textBox2.Location = new Point(158, 71);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(184, 27);
-            textBox2.TabIndex = 1;
+            txtTenSPThem.BorderStyle = BorderStyle.FixedSingle;
+            txtTenSPThem.Location = new Point(158, 71);
+            txtTenSPThem.Name = "txtTenSPThem";
+            txtTenSPThem.Size = new Size(184, 27);
+            txtTenSPThem.TabIndex = 1;
             // 
             // label7
             // 
@@ -691,38 +552,16 @@
             Save.Text = "Lưu";
             Save.UseVisualStyleBackColor = false;
             // 
-            // btnXoa
+            // btnThemSPTong
             // 
-            btnXoa.BackColor = Color.IndianRed;
-            btnXoa.Location = new Point(307, 448);
-            btnXoa.Name = "btnXoa";
-            btnXoa.Size = new Size(107, 40);
-            btnXoa.TabIndex = 1;
-            btnXoa.Text = "Xóa";
-            btnXoa.UseVisualStyleBackColor = false;
-            btnXoa.Click += btnXoa_Click;
-            // 
-            // btnSua
-            // 
-            btnSua.BackColor = Color.IndianRed;
-            btnSua.Location = new Point(176, 448);
-            btnSua.Name = "btnSua";
-            btnSua.Size = new Size(107, 40);
-            btnSua.TabIndex = 1;
-            btnSua.Text = "Sửa";
-            btnSua.UseVisualStyleBackColor = false;
-            btnSua.Click += btnSua_Click;
-            // 
-            // btnThem
-            // 
-            btnThem.BackColor = Color.IndianRed;
-            btnThem.Location = new Point(44, 448);
-            btnThem.Name = "btnThem";
-            btnThem.Size = new Size(107, 40);
-            btnThem.TabIndex = 1;
-            btnThem.Text = "Thêm ";
-            btnThem.UseVisualStyleBackColor = false;
-            btnThem.Click += btnThem_Click;
+            btnThemSPTong.BackColor = Color.IndianRed;
+            btnThemSPTong.Location = new Point(44, 448);
+            btnThemSPTong.Name = "btnThemSPTong";
+            btnThemSPTong.Size = new Size(107, 40);
+            btnThemSPTong.TabIndex = 1;
+            btnThemSPTong.Text = "Thêm ";
+            btnThemSPTong.UseVisualStyleBackColor = false;
+            btnThemSPTong.Click += btnThem_Click;
             // 
             // dgvSanPham
             // 
@@ -1284,16 +1123,12 @@
             tabMain.ResumeLayout(false);
             tabSanPham.ResumeLayout(false);
             tabSanPham.PerformLayout();
-            grpXoaSP.ResumeLayout(false);
-            grpXoaSP.PerformLayout();
+            grpCTSP.ResumeLayout(false);
+            grpCTSP.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown5).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown6).EndInit();
             grpThemSP.ResumeLayout(false);
             grpThemSP.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
-            grpSuaSP.ResumeLayout(false);
-            grpSuaSP.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown3).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown4).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvSanPham).EndInit();
@@ -1320,40 +1155,24 @@
         private Button Save;
         private Button btnXoa;
         private Button btnSua;
-        private Button btnThem;
+        private Button btnThemSPTong;
         private DataGridView dgvSanPham;
         private GroupBox grpThemSP;
-        private NumericUpDown numericUpDown2;
-        private NumericUpDown numericUpDown1;
-        private ComboBox comboBox3;
-        private ComboBox comboBox2;
-        private ComboBox comboBox1;
-        private TextBox textBox1;
-        private Label label6;
-        private Label label5;
-        private Label label4;
-        private Label label3;
-        private Label label2;
-        private Label label1;
-        private GroupBox grpSuaSP;
-        private Button btnLuuSua;
         private NumericUpDown numericUpDown3;
         private NumericUpDown numericUpDown4;
-        private ComboBox comboBox4;
+        private ComboBox cboKichThuocThem;
         private ComboBox comboBox5;
-        private ComboBox comboBox6;
-        private TextBox textBox2;
+        private ComboBox cboHangThem;
+        private TextBox txtTenSPThem;
         private Label label7;
         private Label label8;
         private Label label9;
         private Label label10;
         private Label label11;
         private Label label12;
-        private Button btnLuu;
         private TextBox txtMaSP;
         private Label label13;
-        private GroupBox grpXoaSP;
-        private Button Xoa;
+        private GroupBox grpCTSP;
         private NumericUpDown numericUpDown5;
         private NumericUpDown numericUpDown6;
         private ComboBox comboBox7;
@@ -1370,7 +1189,6 @@
         private Label label20;
         private Button btnHuySua;
         private Button btnhuyXoa;
-        private Button btnHuyThem;
         private TextBox txtTimKiem;
         private TextBox txtTimKH;
         private GroupBox grpXoaKH;
@@ -1421,5 +1239,7 @@
         private RadioButton radioButton1;
         private TextBox textBox12;
         private TextBox textBox11;
+        private Button btnThemSP1;
+        private Button btnThemSP2;
     }
 }

@@ -8,12 +8,11 @@ namespace QuanLyBanAoPhong.DTO
 {
     public class SanPhamDTO
     {
-        public int MaSPCT { get; set; }
-        public string TenSP { get; set; }
-        public string TenHang { get; set; }
-        public string Mau { get; set; }
-        public string Size { get; set; }
+        public int MaSPCT { get; set; }     // Mã SP chi tiết
+        public int MaSP { get; set; }       // Mã sản phẩm
+        public int MaSize { get; set; }     // Kích thước
+        public int MaMau { get; set; }      // ⭐ MÀU SẮC
         public int SoLuong { get; set; }
-        public double DonGia { get; set; }
+        public decimal DonGia { get; set; }
     }
 }

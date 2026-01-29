@@ -8,9 +8,9 @@ namespace QuanLyBanAoPhong.BLL
     {
         SanPhamDAL dal = new SanPhamDAL();
 
-        public DataTable LayDanhSach()
+        public DataTable LayDanhSachSanPham()
         {
-            return dal.GetAll();
+            return dal.GetDanhSachSanPham();
         }
     }
 }
