@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace QuanLyBanAoPhong.DTO
 {
-    public class SanPhamDTO
+    public class SanPhamChiTietDTO
     {
+        public int MaSPCT { get; set; }
         public int MaSP { get; set; }
-        public int MaHang { get; set; }
-        public string Ten { get; set; }
+        public int MaSize { get; set; }
+        public int MaMau { get; set; }
+        public int SoLuong { get; set; }
+        public decimal DonGia1 { get; set; }
         public string TrangThai { get; set; }
     }
 }
