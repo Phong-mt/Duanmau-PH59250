@@ -35,6 +35,8 @@ namespace QuanLyBanAoPhong
             LoadMau();
             LoadComboSanPham();
             LoadSPCT();
+            LoadKhachHang();
+            LoadTrangThaiKH();
         }
         void HienSP()
         {
@@ -312,7 +314,139 @@ namespace QuanLyBanAoPhong
 
             cboHang.SelectedValue = row.Cells["Ma_Hang"].Value;
 
-            
+
+        }
+
+
+        /// <summary>
+        /// //////////////////////// KHÁCH HÀNG ////////////////////////////
+        /// </summary>
+        KhachHangBLL khBLL = new KhachHangBLL();
+        void LoadKhachHang()
+        {
+            dgvKhachHang.DataSource = khBLL.GetAll();
+        }
+
+        private void btnThemKH_Click(object sender, EventArgs e)
+        {
+            KhachHangDTO kh = new KhachHangDTO
+            {
+                TenKH = txtTenKH.Text,
+                GioiTinh = rdoNam.Checked ? "Nam" : "Nữ",
+                DiaChi = txtDiaChi.Text,
+                SoDienThoai = txtSDT.Text,
+                TrangThai = cboTrangThaiKH.Text
+            };
+
+            khBLL.Add(kh);
+            LoadKhachHang();
+        }
+
+        private void dgvKhachHang_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            DataGridViewRow r = dgvKhachHang.Rows[e.RowIndex];
+
+            txtMaKH.Text = r.Cells["Ma_KH"].Value?.ToString();
+            txtTenKH.Text = r.Cells["Ten_KH"].Value?.ToString();
+            txtDiaChi.Text = r.Cells["Dia_Chi"].Value?.ToString();
+            txtSDT.Text = r.Cells["So_Dien_Thoai"].Value?.ToString();
+
+            // ===== GIỚI TÍNH → RADIO BUTTON =====
+            string gioiTinh = r.Cells["Gioi_Tinh"].Value?.ToString();
+
+            if (gioiTinh == "Nam")
+                rdoNam.Checked = true;
+            else if (gioiTinh == "Nữ")
+                rdoNu.Checked = true;
+            else
+            {
+                rdoNam.Checked = false;
+                rdoNu.Checked = false;
+            }
+
+            // ===== TRẠNG THÁI → COMBOBOX =====
+            cboTrangThaiKH.Text = r.Cells["Trang_Thai"].Value?.ToString();
+        }
+        void LoadTrangThaiKH()
+        {
+            cboTrangThaiKH.Items.Clear();
+            cboTrangThaiKH.Items.Add("Hoạt động");
+            cboTrangThaiKH.Items.Add("Ngừng");
+            cboTrangThaiKH.SelectedIndex = 0;
+        }
+        private void btnSuaKH_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtMaKH.Text))
+            {
+                MessageBox.Show("Vui lòng chọn khách hàng cần sửa");
+                return;
+            }
+
+            KhachHangDTO kh = new KhachHangDTO
+            {
+                MaKH = int.Parse(txtMaKH.Text),
+                TenKH = txtTenKH.Text,
+                GioiTinh = rdoNam.Checked ? "Nam" : "Nữ",
+                DiaChi = txtDiaChi.Text,
+                SoDienThoai = txtSDT.Text,
+                TrangThai = cboTrangThaiKH.Text
+            };
+
+            try
+            {
+                khBLL.Update(kh);
+                MessageBox.Show("Sửa khách hàng thành công");
+                LoadKhachHang();   // load lại dgv
+                ResetKhachHang();  // clear form
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        void ResetKhachHang()
+        {
+            txtMaKH.Clear();
+            txtTenKH.Clear();
+            txtDiaChi.Clear();
+            txtSDT.Clear();
+            rdoNam.Checked = true;
+            cboTrangThaiKH.SelectedIndex = 0;
+        }
+       
+        
+
+        private void btnXoaKH_Click_1(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtMaKH.Text))
+            {
+                MessageBox.Show("Vui lòng chọn khách hàng cần xóa");
+                return;
+            }
+
+            int maKH = int.Parse(txtMaKH.Text);
+
+            DialogResult dr = MessageBox.Show(
+                "Bạn có chắc muốn xóa khách hàng này?",
+                "Xác nhận",
+                MessageBoxButtons.YesNo);
+
+            if (dr == DialogResult.Yes)
+            {
+                try
+                {
+                    khBLL.Delete(maKH);
+                    MessageBox.Show("Xóa khách hàng thành công");
+                    LoadKhachHang();
+                    ResetKhachHang();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
     }
 }
