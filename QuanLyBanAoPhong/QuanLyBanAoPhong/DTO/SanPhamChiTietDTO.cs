@@ -13,7 +13,7 @@ namespace QuanLyBanAoPhong.DTO
         public int MaSize { get; set; }
         public int MaMau { get; set; }
         public int SoLuong { get; set; }
-        public decimal DonGia1 { get; set; }
+        public decimal DonGia { get; set; }
         public string TrangThai { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using QuanLyBanAoPhong.DTO;
 
 namespace QuanLyBanAoPhong.DAL
@@ -14,10 +15,9 @@ namespace QuanLyBanAoPhong.DAL
         public DataTable GetAll()
         {
             SqlDataAdapter da = new SqlDataAdapter(
-                @"SELECT sp.Ma_SP, sp.Ten, hsx.Ten_Hang_SX, sp.Trang_Thai
-                  FROM San_Pham sp
-                  JOIN Hang_SX hsx ON sp.Ma_Hang = hsx.Ma_Hang",
-                DbHelper.GetConnection());
+        @"SELECT Ma_SP, Ma_Hang, Ten, Trang_Thai 
+          FROM San_Pham",
+        DbHelper.GetConnection());
 
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -54,7 +54,7 @@ namespace QuanLyBanAoPhong.DAL
             return r > 0;
         }
 
-
+        
         public bool Update(SanPhamDTO sp)
         {
             SqlCommand cmd = new SqlCommand(
@@ -75,7 +75,19 @@ namespace QuanLyBanAoPhong.DAL
             return r > 0;
         }
 
+        public bool HasSanPhamChiTiet(int maSP)
+        {
+            using (SqlConnection conn = DbHelper.GetConnection())
+            {
+                string sql = "SELECT COUNT(*) FROM SAN_PHAM_CHI_TIET WHERE Ma_SP = @MaSP";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@MaSP", maSP);
 
+                conn.Open();
+                int count = (int)cmd.ExecuteScalar();
+                return count > 0;
+            }
+        }
         public bool Delete(int maSP)
         {
             SqlCommand cmd = new SqlCommand(

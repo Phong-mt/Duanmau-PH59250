@@ -38,7 +38,7 @@ namespace QuanLyBanAoPhong
             btnSuaCT = new Button();
             label12 = new Label();
             btnThemCT = new Button();
-            txtDonGia = new Label();
+            label14 = new Label();
             label7 = new Label();
             cboTrangThaiCT = new ComboBox();
             cboMau = new ComboBox();
@@ -47,7 +47,7 @@ namespace QuanLyBanAoPhong
             label11 = new Label();
             label13 = new Label();
             txtSoLuong = new TextBox();
-            txtDonGia1 = new TextBox();
+            txtDonGia = new TextBox();
             label8 = new Label();
             txtMaSPCT = new TextBox();
             label9 = new Label();
@@ -159,12 +159,15 @@ namespace QuanLyBanAoPhong
             // 
             // dgvSanPhamCT
             // 
+            dgvSanPhamCT.BackgroundColor = SystemColors.ControlLightLight;
             dgvSanPhamCT.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvSanPhamCT.Location = new Point(1, 228);
+            dgvSanPhamCT.Location = new Point(-4, 235);
             dgvSanPhamCT.Name = "dgvSanPhamCT";
+            dgvSanPhamCT.ReadOnly = true;
             dgvSanPhamCT.RowHeadersWidth = 51;
             dgvSanPhamCT.Size = new Size(1187, 349);
             dgvSanPhamCT.TabIndex = 4;
+            dgvSanPhamCT.CellContentClick += dvgSanPhamCT_CellContentClick;
             // 
             // panelSanPhamCT
             // 
@@ -173,7 +176,7 @@ namespace QuanLyBanAoPhong
             panelSanPhamCT.Controls.Add(btnSuaCT);
             panelSanPhamCT.Controls.Add(label12);
             panelSanPhamCT.Controls.Add(btnThemCT);
-            panelSanPhamCT.Controls.Add(txtDonGia);
+            panelSanPhamCT.Controls.Add(label14);
             panelSanPhamCT.Controls.Add(label7);
             panelSanPhamCT.Controls.Add(cboTrangThaiCT);
             panelSanPhamCT.Controls.Add(cboMau);
@@ -182,7 +185,7 @@ namespace QuanLyBanAoPhong
             panelSanPhamCT.Controls.Add(label11);
             panelSanPhamCT.Controls.Add(label13);
             panelSanPhamCT.Controls.Add(txtSoLuong);
-            panelSanPhamCT.Controls.Add(txtDonGia1);
+            panelSanPhamCT.Controls.Add(txtDonGia);
             panelSanPhamCT.Controls.Add(label8);
             panelSanPhamCT.Controls.Add(txtMaSPCT);
             panelSanPhamCT.Controls.Add(label9);
@@ -206,11 +209,11 @@ namespace QuanLyBanAoPhong
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = SystemColors.ActiveCaption;
-            label2.Location = new Point(256, 7);
+            label2.Location = new Point(242, 8);
             label2.Name = "label2";
-            label2.Size = new Size(352, 38);
+            label2.Size = new Size(391, 38);
             label2.TabIndex = 1;
-            label2.Text = "Quản lý sản phẩm chi tiết";
+            label2.Text = "👉Quản lý sản phẩm chi tiết";
             label2.Click += label2_Click;
             // 
             // btnSuaCT
@@ -242,14 +245,14 @@ namespace QuanLyBanAoPhong
             btnThemCT.UseVisualStyleBackColor = true;
             btnThemCT.Click += btnThemCT_Click;
             // 
-            // txtDonGia
+            // label14
             // 
-            txtDonGia.AutoSize = true;
-            txtDonGia.Location = new Point(3, 148);
-            txtDonGia.Name = "txtDonGia";
-            txtDonGia.Size = new Size(62, 20);
-            txtDonGia.TabIndex = 1;
-            txtDonGia.Text = "Đơn giá";
+            label14.AutoSize = true;
+            label14.Location = new Point(3, 148);
+            label14.Name = "label14";
+            label14.Size = new Size(62, 20);
+            label14.TabIndex = 1;
+            label14.Text = "Đơn giá";
             // 
             // label7
             // 
@@ -318,13 +321,13 @@ namespace QuanLyBanAoPhong
             txtSoLuong.Size = new Size(173, 27);
             txtSoLuong.TabIndex = 2;
             // 
-            // txtDonGia1
+            // txtDonGia
             // 
-            txtDonGia1.BorderStyle = BorderStyle.FixedSingle;
-            txtDonGia1.Location = new Point(77, 140);
-            txtDonGia1.Name = "txtDonGia1";
-            txtDonGia1.Size = new Size(173, 27);
-            txtDonGia1.TabIndex = 2;
+            txtDonGia.BorderStyle = BorderStyle.FixedSingle;
+            txtDonGia.Location = new Point(77, 140);
+            txtDonGia.Name = "txtDonGia";
+            txtDonGia.Size = new Size(173, 27);
+            txtDonGia.TabIndex = 2;
             // 
             // label8
             // 
@@ -477,21 +480,24 @@ namespace QuanLyBanAoPhong
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = SystemColors.ActiveCaption;
-            label1.Location = new Point(48, 5);
+            label1.Location = new Point(32, 0);
             label1.Name = "label1";
-            label1.Size = new Size(253, 38);
+            label1.Size = new Size(300, 38);
             label1.TabIndex = 0;
-            label1.Text = "Quản lý sản phẩm";
+            label1.Text = "👉 Quản lý sản phẩm";
             label1.Click += label1_Click;
             // 
             // dgvSanPham
             // 
+            dgvSanPham.BackgroundColor = SystemColors.ControlLightLight;
             dgvSanPham.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvSanPham.Location = new Point(-4, 231);
+            dgvSanPham.Location = new Point(-4, 242);
             dgvSanPham.Name = "dgvSanPham";
+            dgvSanPham.ReadOnly = true;
             dgvSanPham.RowHeadersWidth = 51;
             dgvSanPham.Size = new Size(1187, 349);
             dgvSanPham.TabIndex = 0;
+            dgvSanPham.CellContentClick += dgvSanPham_CellContentClick;
             // 
             // tabKhachHang
             // 
@@ -1129,14 +1135,14 @@ namespace QuanLyBanAoPhong
         private Button btnSuaSP;
         private Button btnThemSP;
         private Label label12;
-        private Label txtDonGia;
+        private Label label14;
         private Label label7;
         private Label label11;
         private Label label8;
         private Label label9;
         private ComboBox cboTrangThaiCT;
         private ComboBox cboSize;
-        private TextBox txtDonGia1;
+        private TextBox txtDonGia;
         private TextBox txtMaSPCT;
         private Button btnXoaCT;
         private Button btnSuaCT;

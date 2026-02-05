@@ -24,7 +24,8 @@ namespace QuanLyBanAoPhong
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            dgvSanPhamCT.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvSanPhamCT.MultiSelect = false;
             panelSanPham.Visible = true;
             dgvSanPham.Visible = true;
             LoadTrangThai();
@@ -33,6 +34,7 @@ namespace QuanLyBanAoPhong
             LoadSize();
             LoadMau();
             LoadComboSanPham();
+            LoadSPCT();
         }
         void HienSP()
         {
@@ -55,13 +57,25 @@ namespace QuanLyBanAoPhong
             LoadComboSanPham();
             LoadTrangThai();
         }
+        private void dvgSanPhamCT_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
 
+            DataGridViewRow row = dgvSanPhamCT.Rows[e.RowIndex];
+
+            txtMaSPCT.Text = row.Cells["Ma_SPCT"].Value.ToString();
+            txtSoLuong.Text = row.Cells["So_Luong"].Value.ToString();
+            txtDonGia.Text = row.Cells["Don_Gia"].Value.ToString();
+            cboTrangThaiCT.Text = row.Cells["Trang_Thai"].Value.ToString();
+        }
         void LoadSanPham()
         {
             dgvSanPham.DataSource = spBLL.GetAll();
+            //dgvSanPhamCT.DataSource = spBLL.GetAll();
         }
         void LoadSPCT()
         {
+            dgvSanPhamCT.AutoGenerateColumns = true;
             dgvSanPhamCT.DataSource = ctBLL.GetAll();
         }
         void LoadHangSX()
@@ -118,18 +132,66 @@ namespace QuanLyBanAoPhong
 
         private void btnSuaSP_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtMaSP.Text))
+            {
+                MessageBox.Show("Vui lòng chọn sản phẩm cần sửa");
+                return;
+            }
 
+            SanPhamDTO sp = new SanPhamDTO
+            {
+                MaSP = int.Parse(txtMaSP.Text),
+                Ten = txtTenSP.Text,
+                MaHang = (int)cboHang.SelectedValue,
+                TrangThai = cboTrangThaiSP.Text
+            };
+
+            spBLL.Update(sp);
+            LoadSanPham();
+            ResetSanPham();
         }
-
+        void ResetSanPham()
+        {
+            txtMaSP.Clear();
+            txtTenSP.Clear();
+            cboHang.SelectedIndex = 0;
+            cboTrangThaiSP.SelectedIndex = 0;
+        }
         private void btnXoaSP_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtMaSP.Text))
+            {
+                MessageBox.Show("Vui lòng chọn sản phẩm cần xóa");
+                return;
+            }
 
+            int maSP = int.Parse(txtMaSP.Text);
+
+            DialogResult dr = MessageBox.Show(
+                "Bạn có chắc muốn xóa sản phẩm này?",
+                "Xác nhận",
+                MessageBoxButtons.YesNo);
+
+            if (dr == DialogResult.Yes)
+            {
+                try
+                {
+                    spBLL.Delete(maSP);
+                    MessageBox.Show("Xóa sản phẩm thành công");
+                    LoadSanPham();
+                    ResetSanPham();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
 
         private void btnThemCT_Click(object sender, EventArgs e)
         {
             if (!decimal.TryParse(
-                txtDonGia1.Text.Trim(),
+                txtDonGia.Text.Trim(),
                 NumberStyles.Any,
                 CultureInfo.CurrentCulture,
                 out decimal donGia))
@@ -144,7 +206,7 @@ namespace QuanLyBanAoPhong
                 MaSize = (int)cboSize.SelectedValue,
                 MaMau = (int)cboMau.SelectedValue,
                 SoLuong = int.Parse(txtSoLuong.Text),
-                DonGia1 = donGia,
+                DonGia = donGia,
                 TrangThai = cboTrangThaiCT.Text
             };
 
@@ -155,29 +217,102 @@ namespace QuanLyBanAoPhong
         private void btnSuaCT_Click(object sender, EventArgs e)
         {
 
+            if (string.IsNullOrEmpty(txtMaSPCT.Text))
+            {
+                MessageBox.Show("Vui lòng chọn sản phẩm chi tiết");
+                return;
+            }
+
+            SanPhamChiTietDTO ct = new SanPhamChiTietDTO
+            {
+                MaSPCT = int.Parse(txtMaSPCT.Text),
+                MaSize = (int)cboSize.SelectedValue,
+                MaMau = (int)cboMau.SelectedValue,
+                SoLuong = int.Parse(txtSoLuong.Text),
+                DonGia = decimal.Parse(txtDonGia.Text),
+                TrangThai = cboTrangThaiCT.Text
+            };
+
+            bool kq = ctBLL.Update(ct);
+
+            if (!kq)
+            {
+                MessageBox.Show("Sửa thất bại");
+                return;
+            }
+
+            MessageBox.Show("Sửa sản phẩm chi tiết thành công");
+            LoadSPCT();
 
         }
 
         private void btnXoaCT_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtMaSPCT.Text))
+            {
+                MessageBox.Show("Vui lòng chọn sản phẩm chi tiết");
+                return;
+            }
 
+            int maSPCT = int.Parse(txtMaSPCT.Text);
+
+            DialogResult dr = MessageBox.Show(
+                "Bạn có chắc muốn xóa sản phẩm chi tiết này?",
+                "Xác nhận",
+                MessageBoxButtons.YesNo);
+
+            if (dr == DialogResult.Yes)
+            {
+                bool kq = ctBLL.Delete(maSPCT);
+
+                if (!kq)
+                {
+                    MessageBox.Show("Xóa thất bại");
+                    return;
+                }
+
+                MessageBox.Show("Xóa sản phẩm chi tiết thành công");
+                LoadSPCT();
+                ResetSPCT();
+            }
         }
 
-
+        void ResetSPCT()
+        {
+            txtMaSPCT.Clear();
+            txtSoLuong.Clear();
+            txtDonGia.Clear();
+            cboTrangThaiCT.SelectedIndex = 0;
+        }
 
 
         private void label1_Click(object sender, EventArgs e)
         {
             dgvSanPham.Visible = true;
             dgvSanPhamCT.Visible = false;
-           // HienSP();
+            // HienSP();
         }
 
         private void label2_Click(object sender, EventArgs e)
         {
             dgvSanPham.Visible = false;
             dgvSanPhamCT.Visible = true;
-           // HienSPCT();
+            // HienSPCT();
+        }
+
+        private void dgvSanPham_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            DataGridViewRow row = dgvSanPham.Rows[e.RowIndex];
+
+            txtMaSP.Text = row.Cells["Ma_SP"].Value.ToString();
+            txtTenSP.Text = row.Cells["Ten"].Value.ToString();
+            cboTrangThaiSP.Text = row.Cells["Trang_Thai"].Value.ToString();
+
+            cboHang.SelectedValue = row.Cells["Ma_Hang"].Value;
+
+            
         }
     }
 }
