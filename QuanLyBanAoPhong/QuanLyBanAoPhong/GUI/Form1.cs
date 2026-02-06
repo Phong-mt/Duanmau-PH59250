@@ -827,6 +827,9 @@ namespace QuanLyBanAoPhong
         }
         private void LoadFormHoaDonCT_Load(object sender, EventArgs e)
         {
+
+
+            /////
             LoadHoaDon();
             LoadSanPhamHDCT();
             LoadHoaDonChiTiet();
